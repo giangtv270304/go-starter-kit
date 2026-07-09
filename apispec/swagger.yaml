@@ -1,0 +1,72 @@
+basePath: /
+definitions:
+  echo.HTTPError:
+    properties:
+      message:
+        type: string
+    type: object
+  httpserver.APIResponse-service_CheckHealthResponse:
+    properties:
+      data:
+        $ref: '#/definitions/service.CheckHealthResponse'
+      pagination:
+        $ref: '#/definitions/httpserver.Pagination'
+      requestId:
+        example: 3bf74527-8097-4217-8485-ffe05d16f82e
+        type: string
+    type: object
+  httpserver.Pagination:
+    properties:
+      page:
+        example: 1
+        type: integer
+      pageSize:
+        example: 10
+        type: integer
+      totalCount:
+        example: 42
+        type: integer
+      totalPages:
+        example: 5
+        type: integer
+    type: object
+  service.CheckHealthResponse:
+    properties:
+      status:
+        type: string
+    type: object
+host: localhost:8081
+info:
+  contact:
+    email: tvugiang@gmail.com
+    name: VuGiang
+  title: Gaian User API
+  version: "1.0"
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Check the health status of the service
+      parameters:
+      - description: Request ID (UUID)
+        in: header
+        name: X-Request-Id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Return data
+          schema:
+            $ref: '#/definitions/httpserver.APIResponse-service_CheckHealthResponse'
+        "400":
+          description: Error object
+          schema:
+            $ref: '#/definitions/echo.HTTPError'
+      summary: Check system health
+      tags:
+      - api
+schemes:
+- http
+swagger: "2.0"
