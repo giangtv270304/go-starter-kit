@@ -40,7 +40,6 @@ WORKDIR /app
 
 # Copy the compiled binary
 COPY --from=builder /src/go_starter_kit .
-COPY ./db/migrations ./db/migrations
 
 # Create user
 RUN adduser -D appuser
