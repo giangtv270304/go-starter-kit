@@ -1,4 +1,4 @@
-# go_starter_kit
+# Go Starter Kit
 
 A minimal Go service starter kit built on [gframework](https://github.com/andyle182810/gframework), Echo v5, PostgreSQL, and Valkey (Redis-compatible). It ships with a working `/health` endpoint, Swagger docs generation, structured logging, graceful shutdown, and linting — ready to extend with real handlers and repositories.
 
@@ -67,31 +67,31 @@ A minimal Go service starter kit built on [gframework](https://github.com/andyle
 
 All configuration is loaded from environment variables (see `internal/config/config.go` for defaults). Key groups:
 
-| Group | Prefix | Notes |
-|---|---|---|
-| Common | `GRACEFUL_SHUTDOWN_PERIOD` | Shutdown grace period for all services |
-| Logging | `LOG_LEVEL` | e.g. `debug`, `info` |
-| Metric server | `METRIC_SERVER_*` | Exposes `/status` and `/metrics` (Prometheus) |
-| HTTP server | `HTTP_SERVER_*`, `HTTP_ENABLE_CORS`, `HTTP_ALLOW_ORIGINS`, `HTTP_BODY_LIMIT`, `HTTP_SKIP_REQUEST_ID` | Main API server |
-| Swagger | `SWAGGER_HOST`, `SWAGGER_ENABLED` | Enables `/swagger/*` when `true` |
-| Postgres | `POSTGRES_*` | Connection pool + migration source |
-| Migration | `MIGRATION_ENABLED`, `MIGRATION_SOURCE` | Auto-run migrations on startup |
-| Valkey | `VALKEY_*` | Connection pool for cache/queues |
+| Group         | Prefix                                                                                               | Notes                                         |
+| ------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| Common        | `GRACEFUL_SHUTDOWN_PERIOD`                                                                           | Shutdown grace period for all services        |
+| Logging       | `LOG_LEVEL`                                                                                          | e.g. `debug`, `info`                          |
+| Metric server | `METRIC_SERVER_*`                                                                                    | Exposes `/status` and `/metrics` (Prometheus) |
+| HTTP server   | `HTTP_SERVER_*`, `HTTP_ENABLE_CORS`, `HTTP_ALLOW_ORIGINS`, `HTTP_BODY_LIMIT`, `HTTP_SKIP_REQUEST_ID` | Main API server                               |
+| Swagger       | `SWAGGER_HOST`, `SWAGGER_ENABLED`                                                                    | Enables `/swagger/*` when `true`              |
+| Postgres      | `POSTGRES_*`                                                                                         | Connection pool + migration source            |
+| Migration     | `MIGRATION_ENABLED`, `MIGRATION_SOURCE`                                                              | Auto-run migrations on startup                |
+| Valkey        | `VALKEY_*`                                                                                           | Connection pool for cache/queues              |
 
 `.env` is gitignored — never commit real secrets. Use `.env.example` as the source of truth for available keys.
 
 ## Makefile commands
 
-| Command | Description |
-|---|---|
-| `make build` | Cross-compile the binary (`go_starter_kit`) |
-| `make migrate-create MIGRATION=<name>` | Scaffold a new migration file pair in `db/migrations` |
-| `make migrate-up-local` | Apply all pending migrations against the local Postgres (from `docker-compose.yml`) |
-| `make migrate-down-local` | Roll back the last migration |
-| `make lint` | Run `go mod tidy`, `gofumpt`, `go vet`, and `golangci-lint` |
-| `make gci` | Fix import ordering |
-| `make api-doc` | Regenerate Swagger docs into `apispec/` via `swag init` |
-| `make view-api-doc` | Serve the generated spec locally with Swagger UI (Docker) |
+| Command                                | Description                                                                         |
+| -------------------------------------- | ----------------------------------------------------------------------------------- |
+| `make build`                           | Cross-compile the binary (`go_starter_kit`)                                         |
+| `make migrate-create MIGRATION=<name>` | Scaffold a new migration file pair in `db/migrations`                               |
+| `make migrate-up-local`                | Apply all pending migrations against the local Postgres (from `docker-compose.yml`) |
+| `make migrate-down-local`              | Roll back the last migration                                                        |
+| `make lint`                            | Run `go mod tidy`, `gofumpt`, `go vet`, and `golangci-lint`                         |
+| `make gci`                             | Fix import ordering                                                                 |
+| `make api-doc`                         | Regenerate Swagger docs into `apispec/` via `swag init`                             |
+| `make view-api-doc`                    | Serve the generated spec locally with Swagger UI (Docker)                           |
 
 ## API docs
 
