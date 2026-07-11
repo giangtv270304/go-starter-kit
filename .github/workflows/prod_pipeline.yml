@@ -5,7 +5,7 @@ on:
     tags:
       - "v*"
 
-env:
+  env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository_owner }}/go_starter_kit
 
@@ -38,9 +38,16 @@ jobs:
           docker build -t "$IMAGE_URI" .
           docker push "$IMAGE_URI"
 
+      - name: Checkout deployment repo
+        uses: actions/checkout@v4
+        with:
+          repository: TranVuGiang/operations-starter-kit
+          token: ${{ secrets.DEPLOYMENT_REPO_PAT }}
+          path: operations-starter-kit
+
       - name: Commit and push changes
         run: |
-          FILE=operations-starter-kit/inventory/group_vars/production/vars.yml
+          FILE=inventory/group_vars/production/vars.yml
           sed -i "s/^image_tag: .*/image_tag: \"${{ env.IMAGE_TAG }}\"/" "$FILE"
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
