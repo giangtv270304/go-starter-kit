@@ -2,9 +2,8 @@ name: Prod Build
 
 on:
   push:
-    branches: [main]
-    paths:
-      - "go_starter_kit/**"
+    tags:
+      - "v*"
 
 env:
   REGISTRY: ghcr.io
