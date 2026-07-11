@@ -56,6 +56,7 @@ type Config struct {
 	ValkeyReadTimeout  time.Duration `env:"VALKEY_SERVER_READ_TIMEOUT"  envDefault:"30s"`
 	ValkeyWriteTimeout time.Duration `env:"VALKEY_SERVER_WRITE_TIMEOUT" envDefault:"30s"`
 	ValkeyPoolSize     int           `env:"VALKEY_POOL_SIZE"            envDefault:"1"`
+	ValkeyTLSEnable    bool          `env:"VALKEY_TLS_ENABLE"           envDefault:"true"`
 
 	// Migration settings
 	MigrationEnabled bool   `env:"MIGRATION_ENABLED" envDefault:"false"`

@@ -155,6 +155,7 @@ func newValkeyClient(cfg *config.Config) (*valkey.Valkey, error) {
 		PoolSize:     cfg.ValkeyPoolSize,
 		ReadTimeout:  cfg.ValkeyReadTimeout,
 		WriteTimeout: cfg.ValkeyWriteTimeout,
+		TLSEnabled:   cfg.ValkeyTLSEnable,
 	}
 
 	valkeyClient, err := valkey.New(redisCfg)
