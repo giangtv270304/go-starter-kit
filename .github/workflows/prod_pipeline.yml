@@ -46,6 +46,7 @@ jobs:
           path: operations-starter-kit
 
       - name: Commit and push changes
+        working-directory: operations-starter-kit
         run: |
           FILE=inventory/group_vars/production/vars.yml
           sed -i "s/^image_tag: .*/image_tag: \"${{ env.IMAGE_TAG }}\"/" "$FILE"
