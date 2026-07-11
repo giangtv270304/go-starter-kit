@@ -5,7 +5,7 @@ on:
     tags:
       - "v*"
 
-  env:
+env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository_owner }}/go_starter_kit
 
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout deployment repo
         uses: actions/checkout@v4
         with:
-          repository: TranVuGiang/operations-starter-kit
+          repository: giangtv270304/operations-starter-kit
           token: ${{ secrets.DEPLOYMENT_REPO_PAT }}
           path: operations-starter-kit
 
