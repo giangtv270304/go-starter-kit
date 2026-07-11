@@ -1,4 +1,4 @@
-# Go Starter Kit
+# go_starter_kit
 
 A minimal Go service starter kit built on [gframework](https://github.com/andyle182810/gframework), Echo v5, PostgreSQL, and Valkey (Redis-compatible). It ships with a working `/health` endpoint, Swagger docs generation, structured logging, graceful shutdown, and linting — ready to extend with real handlers and repositories.
 
