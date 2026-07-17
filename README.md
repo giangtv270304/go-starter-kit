@@ -33,6 +33,40 @@ A minimal Go service starter kit built on [gframework](https://github.com/andyle
 └── .golangci.yaml                   # linter configuration
 ```
 
+## Using this as a starter kit for a new project
+
+To clone this repo and rebrand it for a new project (e.g. `my_new_service`):
+
+1. Clone with the new folder name and drop the old git history:
+   ```
+   git clone git@github.com:TranVuGiang/go-starter-kit.git my_new_service
+   cd my_new_service
+   rm -rf .git && git init
+   ```
+2. Update the Go module path in `go.mod` (first line):
+   ```
+   module github.com/<your-username>/my_new_service
+   ```
+3. Rewrite all imports and the service name to match:
+   ```
+   grep -rl "github.com/go_starter_kit" --include="*.go" . | xargs sed -i '' 's|github.com/go_starter_kit|github.com/<your-username>/my_new_service|g'
+   ```
+   Then update `serviceName = "go_starter_kit"` in `main.go`.
+4. Replace remaining references to `go_starter_kit` in config/CI files:
+   - `Makefile` line 1 — `SERVICE_NAME = go_starter_kit` (controls the `make build` output binary name)
+   - `Dockerfile` lines 42/59 — `COPY --from=builder /src/go_starter_kit` and `ENTRYPOINT ["/app/go_starter_kit"]` — **must match `SERVICE_NAME`** above, or the Docker build will fail to find the binary
+   - `docker-compose.yml` — container names and `TF_VAR_db_*`/`TF_VAR_schema_name`
+   - `.github/workflows/prod_pipeline.yml` — `IMAGE_NAME`
+5. Verify everything builds:
+   ```
+   go mod tidy
+   go build ./...
+   ```
+6. Point the repo at its new remote (if pushing to a new GitHub repo):
+   ```
+   git remote add origin git@github.com:<your-username>/<new-repo-name>.git
+   ```
+
 ## Prerequisites
 
 - Go 1.26+
