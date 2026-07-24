@@ -6,7 +6,7 @@ A minimal Go service starter kit built on [gframework](https://github.com/andyle
 
 - **Go 1.26**
 - **Echo v5** — HTTP routing (via `gframework/httpserver`)
-- **gframework** — opinionated wrappers for HTTP server, metrics server, service lifecycle (`runner`), Postgres pool, Valkey client
+- **[gframework](https://github.com/andyle182810/gframework)** — opinionated wrappers for HTTP server, metrics server, service lifecycle (`runner`), Postgres pool, Valkey client
 - **PostgreSQL** (pgx v5) + [golang-migrate](https://github.com/golang-migrate/migrate) for schema migrations
 - **Valkey** (Redis-compatible) for caching/queues
 - **resty** — outbound HTTP client
